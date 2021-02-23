@@ -2,13 +2,10 @@ apiVersion: skaffold/v2beta12
 kind: Config
 build:
   tagPolicy:
-   dateTime:
-    format: "2021-02-22"
-    timezone: "IST"
-
+   gitcommit: {}
   artifacts:
   - image: gcr.io/gcpdevopsdemo/demo/skaffold-example
 deploy:
   kubectl:
     manifests:
-      - k8s-*
+      - k8s/*.yaml
