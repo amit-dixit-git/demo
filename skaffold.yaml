@@ -1,8 +1,6 @@
 apiVersion: skaffold/v2beta12
 kind: Config
 build:
-  tagPolicy:
-   gitcommit: {}
   artifacts:
   - image: gcr.io/gcpdevopsdemo/demo/skaffold-example
 deploy:
