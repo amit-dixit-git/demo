@@ -1,9 +1,18 @@
-apiVersion: skaffold/v2beta12
+apiVersion: skaffold/v2alpha3
 kind: Config
+metadata:
+  name: skaffolddemo
 build:
+  local:
+   push: true
+  tagPolicy: 
+    sha256: {}
   artifacts:
   - image: gcr.io/gcpdevopsdemo/demo/skaffold-example
+    context: .
+    docker:
+     dockerfile: deployment/dockerfile
 deploy:
   kubectl:
     manifests:
-      - k8s/*.yaml
+      - deployment/k8s/*.yaml

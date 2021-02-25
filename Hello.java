@@ -1,5 +1,5 @@
 class Hello{  
 public static void main(String[] args){  
-System.out.println("This is java app \n by using skaffold");  
+System.out.println("This is java app \n hello  using skaffold");  
 }  
 }  
