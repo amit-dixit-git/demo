@@ -1,17 +1,29 @@
-apiVersion: skaffold/v2alpha3
+apiVersion: skaffold/v2beta12
 kind: Config
 metadata:
   name: skaffolddemo
 build:
-  local:
-   push: true
   tagPolicy: 
     sha256: {}
   artifacts:
   - image: gcr.io/gcpdevopsdemo/demo/skaffold-example
     context: .
-    docker:
-     dockerfile: deployment/dockerfile
+    kaniko:
+     dockerfile: deployment/Dockerfile
+     verbosity: debug
+  cluster:
+    pullSecretName: kaniko-secret
+    pullSecretPath: deployment/secret/kaniko-secret.json
+    namespace: test
+    serviceAccount: default
+    resource:
+     request:
+      cpu: 1
+      memory: 4Gi
+     limits:
+      cpu: 1
+      memory: 4Gi
+     
 deploy:
   kubectl:
     manifests:
